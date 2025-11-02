@@ -199,6 +199,7 @@ button:active {
     background: #f9fafb;
     border-radius: 8px;
     border-left: 4px solid #667eea;
+    gap: 10px; 
 }
 
 .expense-item.upcoming {
@@ -236,6 +237,17 @@ button:active {
 
 .delete-btn:hover {
     box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+}
+
+.update-btn {
+    background: #3b82f6;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.update-btn:hover {
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
 .empty-state {
@@ -277,6 +289,8 @@ button:active {
  #fileInput {
     display: none;
 }
+
+
 
 @media (max-width: 768px) {
     h1 {
