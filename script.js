@@ -80,6 +80,21 @@
             updateDisplay();
         }
 
+        function editExpense(id) {
+            const expense = expenses.find(e => e.id === id);
+            if (!expense) return;
+            
+            document.getElementById('expenseCategory').value = expense.category;
+            document.getElementById('expenseAmount').value = expense.amount;
+            document.getElementById('expenseDate').value = expense.date;
+            document.getElementById('expenseType').value = expense.type;
+            
+            deleteExpense(id);
+            
+            document.querySelector('.input-section:nth-of-type(2)').scrollIntoView({ behavior: 'smooth' });
+            
+        }
+
         function calculateFinances() {
             const paidExpenses = expenses.filter(e => e.type === 'paid')
                 .reduce((sum, e) => sum + e.amount, 0);
@@ -108,6 +123,8 @@
                 daysUntil: daysUntil
             };
         }
+
+        
 
         function updateDisplay() {
             const finances = calculateFinances();
@@ -155,6 +172,7 @@
                         <div class="expense-date">${new Date(expense.date).toLocaleDateString()}</div>
                     </div>
                     <div class="expense-amount">$${expense.amount.toFixed(2)}</div>
+                    <button class="update-btn" onclick="editExpense(${expense.id})">Update</button>
                     <button class="delete-btn" onclick="deleteExpense(${expense.id})">Delete</button>
                 </div>
             `).join('');
