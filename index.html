@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Travel Budget Tracker</h1>
+            <p>Will sucks</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3>Total Budget</h3>
+                <div class="amount" id="totalBudget">$0</div>
+            </div>
+            <div class="card positive">
+                <h3>Expected Amount</h3>
+                <div class="amount" id="currentMoney">$0</div>
+            </div>
+            <div class="card warning">
+                <h3>Extra Amount</h3>
+                <div class="amount" id="extraMoney">$0</div>
+            </div>
+            
+            <div class="card negative">
+                <h3>Total Spent</h3>
+                <div class="amount" id="totalSpent">$0</div>
+            </div>
+            <div class="card warning">
+                <h3>Upcoming Expenses</h3>
+                <div class="amount" id="upcomingTotal">$0</div>
+            </div>
+            <div class="card">
+                <h3>Remaining Budget</h3>
+                <div class="amount" id="remainingBudget">$0</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Days Until Departure</h3>
+                <div class="amount" id="daysUntil">-</div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h2>Budget Setup</h2>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="budgetInput">Total Trip Budget ($)</label>
+                    <input type="number" id="budgetInput" placeholder="5000">
+                </div>
+                <div class="form-field">
+                    <label for="currentMoneyInput">Current Money ($)</label>
+                    <input type="number" id="currentMoneyInput" placeholder="2000">
+                </div>
+                <div class="form-field">
+                    <label for="monthlyEarnings">Monthly Earnings ($)</label>
+                    <input type="number" id="monthlyEarnings" placeholder="3000">
+                </div>
+                <div class="form-field">
+                    <label for="departureDate">Departure Date</label>
+                    <input type="date" id="departureDate">
+                </div>
+            </div>
+            <button onclick="updateBudget()">Update Budget</button>
+        </div>
+
+        <div class="input-section">
+            <h2>Add Expense</h2>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="expenseCategory">Category</label>
+                    <select id="expenseCategory">
+                        <option value="Flight">Flight</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Sim Card">Sim Card</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Food">Food</option>
+                        <option value="Activities">Activities</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="expenseAmount">Amount ($)</label>
+                    <input type="number" id="expenseAmount" placeholder="500">
+                </div>
+                <div class="form-field">
+                    <label for="expenseDate">Date</label>
+                    <input type="date" id="expenseDate">
+                </div>
+                <div class="form-field">
+                    <label for="expenseType">Type</label>
+                    <select id="expenseType">
+                        <option value="paid">Already Paid</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+
+        <div class="expenses-section">
+            <h2>Expenses</h2>
+            <div class="expense-tabs">
+                <button class="tab active" onclick="switchTab('all')">All</button>
+                <button class="tab" onclick="switchTab('paid')">Paid</button>
+                <button class="tab" onclick="switchTab('upcoming')">Upcoming</button>
+            </div>
+            <div class="expense-list" id="expenseList">
+                <div class="empty-state">No expenses added yet. Start by adding your first expense above!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="import-export-section">
+        <h2>Share Budget</h2>
+        <div class="button-group">
+            <button onclick="exportData()" class="secondary-btn">📥 Download My Budget</button>
+            <button onclick="document.getElementById('fileInput').click()" class="secondary-btn">📤 Upload Friend's Budget</button>
+            <input type="file" id="fileInput" accept=".json" onchange="importData(event)">
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
