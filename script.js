@@ -50,13 +50,21 @@
         }
 
         function addExpense() {
-            const category = document.getElementById('expenseCategory').value;
+            let category = document.getElementById('expenseCategory').value;
+            const customCategory = document.getElementById('customCategory').value.trim();
             const amount = parseFloat(document.getElementById('expenseAmount').value);
             const date = document.getElementById('expenseDate').value;
             const type = document.getElementById('expenseType').value;
 
             if (!amount || !date) {
                 alert('Please fill in all fields');
+                return;
+            }
+
+            if (category === 'custom' && customCategory) {
+                category = customCategory;
+            } else if (category === 'custom' && !customCategory) {
+                alert('Please type your custom category.');
                 return;
             }
 
@@ -69,10 +77,14 @@
             });
 
             document.getElementById('expenseAmount').value = '';
+            document.getElementById('customCategory').value = '';
+            document.getElementById('customCategory').style.display = 'none';
+            document.getElementById('expenseCategory').value = '';
 
             saveData();
             updateDisplay();
         }
+
 
         function deleteExpense(id) {
             expenses = expenses.filter(e => e.id !== id);
@@ -177,6 +189,19 @@
                 </div>
             `).join('');
         }
+
+        function toggleCustomCategory(select) {
+            const customInput = document.getElementById('customCategory');
+            if (select.value === 'custom') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+                customInput.value = '';
+            }
+        }
+
+
 
         function switchTab(tab) {
             currentTab = tab;
