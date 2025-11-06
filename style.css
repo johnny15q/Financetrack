@@ -207,6 +207,24 @@ button:active {
     background: #fffbeb;
 }
 
+.expense-item.paid {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+}
+
+#customCategory {
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#customCategory:focus {
+    border-color: #667eea;
+}
+
+
 .expense-info {
     flex: 1;
 }
