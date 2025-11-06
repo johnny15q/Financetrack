@@ -76,7 +76,8 @@
             <div class="input-group">
                 <div class="form-field">
                     <label for="expenseCategory">Category</label>
-                    <select id="expenseCategory">
+                    <select id="expenseCategory" onchange="toggleCustomCategory(this)">
+                        <option value="">-- Choose or type --</option>
                         <option value="Flight">Flight</option>
                         <option value="Hotel">Hotel</option>
                         <option value="Sim Card">Sim Card</option>
@@ -85,7 +86,9 @@
                         <option value="Food">Food</option>
                         <option value="Activities">Activities</option>
                         <option value="Other">Other</option>
+                        <option value="custom">✏️ Custom...</option>
                     </select>
+                    <input type="text" id="customCategory" placeholder="Type custom category..." style="display:none; margin-top:8px;">
                 </div>
                 <div class="form-field">
                     <label for="expenseAmount">Amount ($)</label>
